@@ -53,7 +53,7 @@ export default {
       }
     },
     async addTodoList() {
-      this.newTodo.todoLabel = this.newTodo.todoLabel.trim();
+      this.newTodo = this.newTodo.trim();
       await createTodoApi(this.newTodo);
       this.fetchTodoList();
       this.newTodo = "";
