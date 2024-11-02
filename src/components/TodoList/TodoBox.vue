@@ -5,7 +5,7 @@
       :key="todo.todoUuid"
       class="todo-item"
     >
-      <div>
+      <div class="flex">
         <el-button
           :class="todo.active ? 'chack-done' : 'chack'"
           size="small"
@@ -14,12 +14,20 @@
         >
           <el-icon color="white" v-if="todo.active"><Select /></el-icon>
         </el-button>
-        <span :class="{ completed: todo.active }" style="margin-left: 16px">{{
-          todo.todoLabel
-        }}</span>
+        <div
+          class="todo-label-box"
+          :class="{ completed: todo.active }"
+          style="margin-left: 16px"
+        >
+          {{ todo.todoLabel }}
+        </div>
       </div>
       <div>
-        <el-button class="btn" circle @click="openEditDialog(index)"
+        <el-button
+          class="btn"
+          circle
+          @click="openEditDialog(index)"
+          :disabled="todo.active"
           ><el-icon><EditPen /></el-icon
         ></el-button>
         <el-button class="btn btn-delete" circle @click="removeTodo(index)"
@@ -101,6 +109,10 @@ export default {
 </script>
 
 <style scoped>
+.flex {
+  display: flex;
+  flex-wrap: nowrap;
+}
 .todo-list {
   width: 300px;
   margin: 0 auto;
@@ -121,6 +133,12 @@ export default {
 .completed {
   text-decoration: line-through;
   color: #aaa;
+}
+.todo-label-box {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 350px;
 }
 
 .btn {

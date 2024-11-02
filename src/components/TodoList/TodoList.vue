@@ -8,9 +8,11 @@
             <el-row class="flex">
               <el-input
                 v-model="newTodo"
-                style="width: 100%; margin: 0 0px 24px 0"
+                style="width: 100%; margin: 0 0px 32px 0"
                 placeholder="Please Input"
                 class="input-todo"
+                maxlength="60"
+                show-word-limit
               />
               <el-button class="btn-add" @click="addTodoList()">ADD</el-button>
             </el-row>
@@ -103,8 +105,14 @@ export default {
 .input-todo ::v-deep .el-input__wrapper {
   height: 40px;
   border-radius: 36px;
+  padding: 0 60px 0 12px;
   background-color: #ececee;
   border-color: #ececee;
   position: relative;
+}
+::v-deep .el-input .el-input__count .el-input__count-inner {
+  top: 50px;
+  right: 12px;
+  position: absolute;
 }
 </style>
